@@ -157,10 +157,6 @@ public class JarePluginMeta extends BaseStepMeta implements StepMetaInterface
 		// we need to give back the appropriate information
 		if( nextStep==null || nextStep.getName().equals(stepMain))
 		{
-			ValueMetaInterface filename=new ValueMeta("ruleengine_rules_filename", ValueMeta.TYPE_STRING);
-			filename.setOrigin(origin);
-			rowMeta.addValueMeta( filename );
-		
 			ValueMetaInterface totalGroups=new ValueMeta("ruleengine_groups", ValueMeta.TYPE_INTEGER);
 			totalGroups.setOrigin(origin);
 			rowMeta.addValueMeta( totalGroups );

@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.ZipFile;
@@ -218,11 +220,11 @@ public class JarePlugin extends BaseStep implements StepInterface
         
         // all fields are passed to the rule engine. alternatively one could pass single fields
         // (for performance reasons)
-        for(int i=0;i<fieldNames.length;i++)
+        for(int i=0;i<fieldNames.length;i++) 
         {
         	if(outputRow[i]!=null)
         	{
-        		fields.addField(fieldNames[i],outputRow[i].toString());
+        		fields.addField(fieldNames[i],outputRow[i]);
         	}
         	else
         	{
@@ -294,22 +296,51 @@ public class JarePlugin extends BaseStep implements StepInterface
 	           		if(rf.isUpdated())
 	           		{
 	           			log.logRowlevel("field: " + rf.getName() + " [" + fieldType + "] updated from rule engine");
-		           		if(fieldType == ValueMetaInterface.TYPE_BOOLEAN)
-		           		{
-		           			outputRow[i] = rf.getBooleanValue();
-		           		}
-		           		
-		           		else if(fieldType == ValueMetaInterface.TYPE_STRING)
+	           			if(fieldType == ValueMetaInterface.TYPE_BOOLEAN)
 		           		{
 		           			outputRow[i] = rf.getValue();
 		           		}
-		           		else if(fieldType == ValueMetaInterface.TYPE_INTEGER)
+	           			else if(fieldType == ValueMetaInterface.TYPE_STRING)
 		           		{
-		           			outputRow[i] = rf.getLongValue();
+		           			outputRow[i] = rf.getValue();
+		           		}
+		           		else if(fieldType == ValueMetaInterface.TYPE_INTEGER) 
+		           		{
+		           			outputRow[i] = (Long)rf.getValue();
 		           		}
 		           		else if(fieldType == ValueMetaInterface.TYPE_NUMBER)
 		           		{
-		           			outputRow[i] = rf.getDoubleValue();
+		           			if(rf.getValue() instanceof Long)
+		           			{
+		           				outputRow[i] = ((Long)rf.getValue()).doubleValue();
+		           			}
+		           			else if(rf.getValue() instanceof Double)
+		           			{
+		           				outputRow[i] = rf.getValue();
+		           			}
+		           			else if(rf.getValue() instanceof Integer)
+		           			{
+		           				outputRow[i] = ((Integer)rf.getValue()).doubleValue();
+		           			}
+		           		}
+		           		else if(fieldType == ValueMetaInterface.TYPE_BIGNUMBER) 
+		           		{
+		           			if(rf.getValue() instanceof Long)
+		           			{
+		           				outputRow[i] = new BigDecimal((Long)rf.getValue());
+		           			}
+		           			else if(rf.getValue() instanceof Double)
+		           			{
+		           				outputRow[i] = new BigDecimal((Double)rf.getValue());
+		           			}
+		           			else if(rf.getValue() instanceof Integer)
+		           			{
+		           				outputRow[i] = new BigDecimal((Integer)rf.getValue());
+		           			} 
+		           		}
+		           		else if(fieldType == ValueMetaInterface.TYPE_DATE)
+		           		{
+		           			outputRow[i] = (Date)rf.getValue(); 
 		           		}
 		           		else
 		           		{
@@ -331,7 +362,7 @@ public class JarePlugin extends BaseStep implements StepInterface
         	return false;
         }
         
-        // output the rule results
+        // output the rule results 
         try
         {
         	// only if an rule results step is defined and not if we output only
@@ -365,8 +396,8 @@ public class JarePlugin extends BaseStep implements StepInterface
 		            				outputRowRuleResultsCloned[inputSize+1] = (long)group.getFailed();
 		            				outputRowRuleResultsCloned[inputSize+2] = subgroup.getId();
 		            				outputRowRuleResultsCloned[inputSize+3] = (long)subgroup.getFailed();
-		            				outputRowRuleResultsCloned[inputSize+4] = subgroup.getLogicalOperatorRulesAsString();
-		            				outputRowRuleResultsCloned[inputSize+5] = subgroup.getLogicalOperatorSubGroupAsString();
+		            				outputRowRuleResultsCloned[inputSize+4] = subgroup.getLogicalOperatorSubGroupAsString();
+		            				outputRowRuleResultsCloned[inputSize+5] = subgroup.getLogicalOperatorRulesAsString();
 		            				outputRowRuleResultsCloned[inputSize+6] = rule.getId();
 		            				outputRowRuleResultsCloned[inputSize+7] = (long)rule.getFailed();
 		            				outputRowRuleResultsCloned[inputSize+8] = result.getMessage();
@@ -395,12 +426,11 @@ public class JarePlugin extends BaseStep implements StepInterface
         // add the generated field values to the main output row
         try
         {
-	        outputRow[inputSize] = realFilename;
-	        outputRow[inputSize +1] = (long)ruleEngine.getNumberOfGroups();
-	        outputRow[inputSize +2] = (long)ruleEngine.getNumberOfGroupsFailed();
-	        outputRow[inputSize +3] = (long)ruleEngine.getNumberOfRules();
-	        outputRow[inputSize +4] = (long)ruleEngine.getNumberOfRules() - (long)ruleEngine.getNumberOfRulesPassed();
-	        outputRow[inputSize +5] = (long)ruleEngine.getNumberOfActions();
+	        outputRow[inputSize] = (long)ruleEngine.getNumberOfGroups();
+	        outputRow[inputSize +1] = (long)ruleEngine.getNumberOfGroupsFailed();
+	        outputRow[inputSize +2] = (long)ruleEngine.getNumberOfRules();
+	        outputRow[inputSize +3] = (long)ruleEngine.getNumberOfRules() - (long)ruleEngine.getNumberOfRulesPassed();
+	        outputRow[inputSize +4] = (long)ruleEngine.getNumberOfActions();
 	        
 	        // original line with only one output step
 	        // putRow(data.outputRowMeta, outputRow);
@@ -542,11 +572,6 @@ public class JarePlugin extends BaseStep implements StepInterface
 		}
 		else if(!ruleResults)
 		{
-		
-			ValueMetaInterface filename=new ValueMeta("ruleengine_rules_filename", ValueMeta.TYPE_STRING);
-			filename.setOrigin(origin);
-			r.addValueMeta( filename );
-		
 			ValueMetaInterface totalGroups=new ValueMeta("ruleengine_groups", ValueMeta.TYPE_INTEGER);
 			totalGroups.setOrigin(origin);
 			r.addValueMeta( totalGroups );
