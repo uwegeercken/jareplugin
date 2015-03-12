@@ -27,4 +27,8 @@ Datamelt
 email: uwe.geercken@web.de
 web:   www.datamelt.com
 
+<<<<<<< HEAD
 2015-03-12
+=======
+2014-11-27
+>>>>>>> ea4090ddc287ce7dd3f469e2016f76baf363c6e1
