@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin
    id="Jare_Rule_Engine_Plugin"
-   iconfile="check_ok.png"
+   iconfile="../check_ok.png"
    description="Jare Business Rule Engine"
    tooltip="Step for Java Business Rule Engine - JaRE"
    category="Validation"
    classname="com.datamelt.kettle.jare.JarePluginMeta">
    <libraries>
-	<library name="jare_plugin_0.2.jar"/>
-	<library name="jare0.73.jar"/>
+	<library name="../jare_plugin_0.2.jar"/>
+	<library name="../jare0.73.jar"/>
     </libraries>
 
    <localized_category>
-     <category locale="en_US">Transform</category>
-	 <category locale="de_DE">Transformation</category>
+     <category locale="en_US">Validation</category>
+	 <category locale="de_DE">Validation</category>
    </localized_category>
    <localized_description>
      <description locale="en_US">Rule Engine</description>
 	 <description locale="de_DE">Rule Engine</description>
    </localized_description>
    <localized_tooltip>
-     <tooltip locale="en_US">Checks data against rules defined in external XML files</tooltip>
-	 <tooltip locale="de_DE">Prüft Daten gegen Regeln, die in externen XML Dateien definiert sind</tooltip>
+     <tooltip locale="en_US">Checks data using the JaRE rule engine using rules located in a zip file</tooltip>
+	 <tooltip locale="de_DE">Prüft Daten mit Hilfe der JaRE Rule Engine und Regeln, die in einer Zip Datei vorliegen</tooltip>
    </localized_tooltip>
    
 </plugin>
