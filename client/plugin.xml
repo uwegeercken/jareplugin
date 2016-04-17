@@ -8,7 +8,7 @@
    classname="com.datamelt.kettle.jareclient.JareClientPluginMeta">
    <libraries>
 	<library name="../jare_plugin_0.2.jar"/>
-	<library name="../jare0.74.jar"/>
+	<library name="../jare0.77.jar"/>
     </libraries>
 
    <localized_category>

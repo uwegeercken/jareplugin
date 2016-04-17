@@ -24,6 +24,5 @@ Uwe Geercken
 Datamelt
 
 email: uwe.geercken@web.de
-web:   www.datamelt.com
 
-2015-04-05
+2016-04-17
