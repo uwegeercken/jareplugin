@@ -7,4 +7,4 @@ One plugin is for running the ruleengine inside Pentaho PDI. The other plugin is
 the ruleengine runs in server mode on the same or a seperate machine. The plugin in this case
 simply points to the server.
 
-Uwe Geercken - last update 2016-06-11
+Uwe Geercken - last update 2016-06-25
