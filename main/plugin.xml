@@ -7,7 +7,7 @@
    category="Validation"
    classname="com.datamelt.kettle.jare.JarePluginMeta">
    <libraries>
-	<library name="../jare_plugin_0.2.jar"/>
+	<library name="../jare_plugin_0.3.jar"/>
 	<library name="../jare0.78.jar"/>
     </libraries>
 
