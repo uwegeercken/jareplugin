@@ -8,7 +8,7 @@
    classname="com.datamelt.kettle.jare.JarePluginMeta">
    <libraries>
 	<library name="../jare_plugin_0.3.jar"/>
-	<library name="../jare0.78.jar"/>
+	<library name="../jare0.79.jar"/>
     </libraries>
 
    <localized_category>
@@ -20,8 +20,8 @@
 	 <description locale="de_DE">Rule Engine</description>
    </localized_description>
    <localized_tooltip>
-     <tooltip locale="en_US">Checks data using the JaRE rule engine using rules located in a zip file</tooltip>
-	 <tooltip locale="de_DE">Prüft Daten mit Hilfe der JaRE Rule Engine und Regeln, die in einer Zip Datei vorliegen</tooltip>
+     <tooltip locale="en_US">Checks data using the JaRE rule engine using business rules</tooltip>
+	 <tooltip locale="de_DE">Prüft Daten mit Hilfe der JaRE Rule Engine und Business Regeln</tooltip>
    </localized_tooltip>
    
 </plugin>
