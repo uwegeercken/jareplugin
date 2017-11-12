@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Rule Engine Plugin</title>
+
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    text-align: left;    
+}
+</style>
+	</head>
+<p><h2>Rule Engine Plugin</h2>
+
+<h3>Description</h3>
+<p>
+	The Rule Engine Plugin allows to run business rules against each row of data. For the maintenance of the business rules and actions the Business Rules Maintenance Tool - a web application - is used. Once the business logic is complete, the relevant project is exported from the tool in form of a zip file. The zip file is then referenced in the &quot;Rules File Name&quot; field.
+</p>
+<p>
+	Note: make sure that inside the project in the Business Rules Maintenance Tool you define fields that correspond to the names of the fields in the transformation.
+</p>
+<p>
+	The Business Rules Maintenance Tool can be downloaded as a Web Archive (war file) here:: <a href="https://github.com/uwegeercken/rule_maintenance_war">Business Rules Maintenance Tool</a>. The database MySQL/Mariadb database schema required by the tool is available here: <a href="https://github.com/uwegeercken/rule_maintenance_db">Business Rules Maintenance Tool</a>. 
+</p>
+
+<h3>Options</h3>
+<p>The table below describes the options available for the Fixed File Input step:</p>
+
+ <table style="width:100%">
+  <tr halign="left">
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>Rules File Name</td>
+    <td>The name of the project zip file. Project zip files are created with the Business Rules Maintenance Tool - a web application to orchestrate rules and actions. You may use variables.</td>
+  </tr>
+  <tr>
+    <td>Main Output Step</td>
+    <td>Select the step to which the main output of the rule egine will be forwarded.</td>
+  </tr>
+  <tr>
+    <td>Rule Results Step</td>
+    <td>Select the step to which the detailed output of the rule engine will be forwarded.</td>
+  </tr>
+  <tr>
+    <td>Rule Results Step Output Type</td>
+    <td>Select which type of results will be output to the steo defined in the Rule Results Step.</td>
+  </tr>
+</table> 
+
+<h3>Metadata Injection Support</h3>
+<p>You can use the Metadata Injection supported fields with ETL Metadata Injection step to pass metadata to your transformation at runtime. The following Option and Value fields of the Rule Engine step support metadata injection: Rules File Name and Rule Results Step Output Type
+
+</p>
+</p>
+</body>
+</html>
