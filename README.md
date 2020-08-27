@@ -9,8 +9,8 @@ simply points to the server.
 
 The steps now support metadata injection.
 
-    Copyright (C) 2008-2017  Uwe Geercken
-    
+    Copyright (C) 2008-2020  Uwe Geercken
+
 
  Licensed to the Apache Software Foundation (ASF) under one
  or more contributor license agreements.  See the NOTICE file
@@ -29,4 +29,4 @@ The steps now support metadata injection.
  specific language governing permissions and limitations
  under the License.
 
-Uwe Geercken - last update 2017-11-17
+Uwe Geercken - last update 2020-08-27
